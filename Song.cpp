@@ -16,22 +16,22 @@ Song::Song(){
     title="";
     size=0;
 }
-Song::Song(string a, string t, int sz){
-    artist=a;
-    title=t;
-    size=sz;
+Song::Song(string sgArtist, string sgTitle, int sgSize){
+    artist=sgArtist;
+    title=sgTitle;
+    size=sgSize;
 }
-void Song::setArtist(string a) {
-    artist=a;
+void Song::setArtist(string sgArtist) {
+    artist=sgArtist;
 }
-void Song::setTitle(string a, string t) {
-    artist=a;
-    title=t;
+void Song::setTitle(string sgArtist, string sgTitle) {
+    artist=sgArtist;
+    title=sgTitle;
 }
-void Song::setSize(string a, string t, int sz) {
-    artist=a;
-    title=t;
-    size=sz;
+void Song::setSize(string sgArtist, string sgTitle, int sgSize) {
+    artist=sgArtist;
+    title=sgTitle;
+    size=sgSize;
 }
 bool Song::operator >(Song const &rhs)
 {
