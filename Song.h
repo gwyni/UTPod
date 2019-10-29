@@ -29,7 +29,7 @@ public:
     {  return artist;  }
     string getTitle() const
     {  return title;  }
-    int setSize() const
+    int getSize() const
     {  return size;  }
 
     bool operator >(Song const &rhs);
