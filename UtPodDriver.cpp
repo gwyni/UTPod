@@ -45,6 +45,8 @@ int main(int argc, char *argv[])
 
     result = t.removeSong(s2);
     cout << "delete result = " << result << endl;
+    t.showSongList();
+
 
     result = t.removeSong(s3);
     cout << "delete result = " << result << endl;
@@ -53,9 +55,13 @@ int main(int argc, char *argv[])
 
     result = t.removeSong(s1);
     cout << "delete result = " << result << endl;
+    t.showSongList();
+
 
     result = t.removeSong(s5);
     cout << "delete result = " << result << endl;
+    t.showSongList();
+
 
     result = t.removeSong(s4);
     cout << "delete result = " << result << endl;

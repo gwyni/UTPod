@@ -34,9 +34,24 @@ int UtPod::addSong(Song const &s) {
 }
 int UtPod::removeSong(Song const &s) {
     SongNode* i;
+    SongNode* deleteThis;
     for(i = songs; i != NULL; i = i->next){
-        if (i->s==s){
+        if (i->s==s){ //check if first element is song
+            songs = i->next;
             delete(i);
+            return SUCCESS;
+        }
+        else if((i->next->s==s) && (i->next->next==NULL)){ //check if last element is song
+            deleteThis=i->next;
+            i->next = NULL;
+            delete(deleteThis);
+            return SUCCESS;
+        }
+        else if ((i->next->s==s)&&(i->next->next!=NULL)){
+            deleteThis=i->next;
+            i->next = i->next->next;
+            delete(deleteThis);
+
             return SUCCESS;
         }
     }
@@ -46,8 +61,7 @@ void UtPod::shuffle() {
 
 }
 void UtPod::showSongList() {
-    SongNode* i = songs;
-
+    SongNode* i;
     for(i = songs; i != NULL; i = i->next){
         cout << i->s.getArtist() << ", " << i->s.getTitle() << ", " <<i->s.getSize() <<endl;
     }
