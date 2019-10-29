@@ -20,10 +20,10 @@ private:
     int size;
 public:
     Song();
-    Song(string a, string t, int sz);
-    void setArtist(string a);
-    void setTitle(string a, string t);
-    void setSize(string a, string, int sz);
+    Song(string sgArtist, string sgTitle, int sgSize);
+    void setArtist(string sgArtist);
+    void setTitle(string sgArtist, string sgTitle);
+    void setSize(string sgArtist, string sgTitle, int sgSize);
 
     string getArtist() const
     {  return artist;  }
