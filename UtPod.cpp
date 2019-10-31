@@ -36,28 +36,49 @@ int UtPod::removeSong(Song const &s) {
     SongNode* i;
     SongNode* deleteThis;
     for(i = songs; i != NULL; i = i->next){
-        if (i->s==s){ //check if first element is song
+        if (i->s==s){ //check if first element should be deleted, next song is now first
             songs = i->next;
             delete(i);
             return SUCCESS;
         }
-        else if((i->next->s==s) && (i->next->next==NULL)){ //check if last element is song
+        else if((i->next->s==s) && (i->next->next==NULL)){ //check if last song should be deleted, current song now is last
             deleteThis=i->next;
             i->next = NULL;
             delete(deleteThis);
             return SUCCESS;
         }
-        else if ((i->next->s==s)&&(i->next->next!=NULL)){
+        else if ((i->next->s==s)&&(i->next->next!=NULL)){ //if the next song should be deleted, current song has to point to 2 places ahead
             deleteThis=i->next;
             i->next = i->next->next;
             delete(deleteThis);
-
             return SUCCESS;
         }
     }
     return NOT_FOUND;
 }
 void UtPod::shuffle() {
+    int count = 0;
+    for(SongNode* i = songs; i != NULL; i = i->next){
+        count++;
+    }
+    if (count != 0){
+        SongNode *shuffled = songs;
+        SongNode *tempList;
+        SongNode tempNode;
+        for(SongNode* i = songs; i != NULL; i = i->next){
+            for(SongNode* j = songs; j != NULL; j = j->next) {
+                tempList = songs;
+                int randomNode = rand() % count;
+                for (int r = 0; r < randomNode; r++) {
+                    tempList = tempList->next;
+                }
+                tempNode.s = shuffled->s;
+                shuffled->s = tempList->s;
+                tempList->s = tempNode.s;
+            }
+        }
+    }
+
 
 }
 void UtPod::showSongList() {
@@ -65,7 +86,6 @@ void UtPod::showSongList() {
     for(i = songs; i != NULL; i = i->next){
         cout << i->s.getArtist() << ", " << i->s.getTitle() << ", " <<i->s.getSize() <<endl;
     }
-
 }
 void UtPod::sortSongList(){
 
