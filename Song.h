@@ -1,11 +1,10 @@
 //
 // Created by gdoug on 10/26/2019.
 //
-
 #ifndef UNTITLED5_SONG_H
 #define UNTITLED5_SONG_H
-
 #endif
+
 
 #include <iostream>
 #include <string>
@@ -33,6 +32,7 @@ public:
     {  return size;  }
 
     bool operator >(Song const &rhs);
+    bool operator <(Song const &rhs);
     bool operator==(Song const &rhs);
 };
 

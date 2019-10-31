@@ -33,15 +33,35 @@ void Song::setSize(string sgArtist, string sgTitle, int sgSize) {
     title=sgTitle;
     size=sgSize;
 }
-bool Song::operator >(Song const &rhs)
-{
-    if (title>rhs.title || artist >rhs.artist){
-        return (title>rhs.title);
-
-    }
-    else{
+bool Song::operator >(Song const &rhs){
+    if(artist<rhs.artist){
         return false;
     }
+    if (artist>rhs.artist){
+        return true;
+    }
+    if ((artist==rhs.artist) && (title>rhs.title)){
+        return true;
+    }
+    if((artist==rhs.artist) && (title==rhs.title) && (size>rhs.size)){
+        return true;
+    }
+    return false;
+}
+bool Song::operator <(Song const &rhs){
+    if(artist>rhs.artist){
+        return false;
+    }
+    if (artist<rhs.artist){
+        return true;
+    }
+    if ((artist==rhs.artist) && (title<rhs.title)){
+        return true;
+    }
+    if((artist==rhs.artist) && (title==rhs.title) && (size<rhs.size)){
+        return true;
+    }
+    return false;
 }
 
 bool Song::operator ==(Song const &rhs)

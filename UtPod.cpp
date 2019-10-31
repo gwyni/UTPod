@@ -22,7 +22,7 @@ UtPod::UtPod(int size){
 
 int UtPod::addSong(Song const &s) {
     if (getRemainingMemory()>s.getSize()){
-        SongNode* newNode = new SongNode();
+        SongNode* newNode = new SongNode(); //allocate space
         newNode -> s = s;
         newNode -> next = songs;
         songs = newNode;
@@ -58,23 +58,23 @@ int UtPod::removeSong(Song const &s) {
 }
 void UtPod::shuffle() {
     int count = 0;
-    for(SongNode* i = songs; i != NULL; i = i->next){
+    for(SongNode* i = songs; i != NULL; i = i->next){ //count number of song nodes
         count++;
     }
     if (count != 0){
-        SongNode *shuffled = songs;
-        SongNode *tempList;
+        SongNode *temp = songs;
+        SongNode *shuffled;
         SongNode tempNode;
         for(SongNode* i = songs; i != NULL; i = i->next){
             for(SongNode* j = songs; j != NULL; j = j->next) {
-                tempList = songs;
+                shuffled = songs;
                 int randomNode = rand() % count;
                 for (int r = 0; r < randomNode; r++) {
-                    tempList = tempList->next;
+                    shuffled = shuffled->next; //move to the random location
                 }
-                tempNode.s = shuffled->s;
-                shuffled->s = tempList->s;
-                tempList->s = tempNode.s;
+                tempNode.s = temp->s; //move temp values into shuffled list
+                temp->s = shuffled->s;
+                shuffled->s = tempNode.s;
             }
         }
     }
@@ -88,10 +88,28 @@ void UtPod::showSongList() {
     }
 }
 void UtPod::sortSongList(){
-
+    SongNode *sg1=songs;
+    SongNode *sg2=songs;
+    if (sg1==NULL){
+        return;}
+    if((sg1->next)==NULL){
+        return;}
+    for(sg1=sg1; sg1!=NULL;sg1=sg1->next){
+        for(sg2=sg1;sg2!=NULL;sg2=sg2->next){
+            if((sg1->s) > (sg2->s)){
+                Song temp=sg1->s;
+                sg1->s=sg2->s;
+                sg2->s=temp;
+            }
+        }
+    }
 }
 void UtPod::clearMemory() {
-
+    SongNode *i=songs;
+    for(i=songs; i !=NULL;i=i->next){
+        delete i;
+    }
+    songs=NULL;
 }
 int UtPod::getRemainingMemory() {
     SongNode* i;
@@ -100,7 +118,6 @@ int UtPod::getRemainingMemory() {
         remainingMem += i->s.getSize();
     }
     remainingMem=getTotalMemory()-remainingMem;
-//cout <<remainingMem<<endl;
     return remainingMem;
 }
 UtPod::~UtPod() {
