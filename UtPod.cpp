@@ -92,12 +92,12 @@ void UtPod::sortSongList(){
     SongNode *sg2=songs;
     if (sg1==NULL){
         return;}
-    if((sg1->next)==NULL){
+    if((sg1->next)==NULL){      // return if less than 2 songs
         return;}
     for(sg1=sg1; sg1!=NULL;sg1=sg1->next){
         for(sg2=sg1;sg2!=NULL;sg2=sg2->next){
             if((sg1->s) > (sg2->s)){
-                Song temp=sg1->s;
+                Song temp=sg1->s; // swap songs
                 sg1->s=sg2->s;
                 sg2->s=temp;
             }
