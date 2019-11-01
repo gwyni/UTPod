@@ -16,6 +16,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     UtPod t;
+    cout << "add songs..." <<endl;
     Song s1("High School Musical", "Gotta go my own way", 7);
     int result = t.addSong(s1);
     Song s2("High School Musical", "Breaking Free", 5);
@@ -88,10 +89,13 @@ int main(int argc, char *argv[])
     cout << "remove result = " << result << endl;
     t.showSongList();
     result = t.removeSong(s6);
+    cout << "remove result = " << result << endl;
     t.showSongList();
     result = t.removeSong(s6);
+    cout << "remove result = " << result << endl;
     t.showSongList();
     result = t.removeSong(s6);
+    cout << "remove result = " << result << endl;
     t.showSongList();
 
     cout << "remove result (should be -2) = " << result << endl;
