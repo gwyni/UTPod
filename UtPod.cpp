@@ -3,7 +3,9 @@
 //
 
 #include "UtPod.h"
+#include <stdlib.h>
 
+using namespace std;
 UtPod::UtPod()
 {
     songs= NULL;
@@ -41,11 +43,16 @@ int UtPod::removeSong(Song const &s) {
             delete(i);
             return SUCCESS;
         }
-        else if((i->next->s==s) && (i->next->next==NULL)){ //check if last song should be deleted, current song now is last
-            deleteThis=i->next;
-            i->next = NULL;
-            delete(deleteThis);
-            return SUCCESS;
+        else if(i->next->next==NULL){ //check if last song should be deleted, current song now is last
+            if (i->next->s==s) {
+                deleteThis = i->next;
+                i->next = NULL;
+                delete (deleteThis);
+                return SUCCESS;
+            }
+            else{
+                return NOT_FOUND;
+            }
         }
         else if ((i->next->s==s)&&(i->next->next!=NULL)){ //if the next song should be deleted, current song has to point to 2 places ahead
             deleteThis=i->next;
@@ -92,12 +99,12 @@ void UtPod::sortSongList(){
     SongNode *sg2=songs;
     if (sg1==NULL){
         return;}
-    if((sg1->next)==NULL){      // return if less than 2 songs
+    if((sg1->next)==NULL){
         return;}
     for(sg1=sg1; sg1!=NULL;sg1=sg1->next){
         for(sg2=sg1;sg2!=NULL;sg2=sg2->next){
             if((sg1->s) > (sg2->s)){
-                Song temp=sg1->s; // swap songs
+                Song temp=sg1->s;
                 sg1->s=sg2->s;
                 sg2->s=temp;
             }
